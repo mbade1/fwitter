@@ -1,0 +1,15 @@
+<!-- SHOWS AN INDIVIDUAL TWEET: Needs a form for delete-->
+
+<h1>View Tweet</h1>
+
+<h3><%= @tweet.content %></h3>
+
+<h4><a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a></h4>
+
+FORM FOR DELETE BUTTON
+
+<form method="POST" action="/tweets/<%= @tweet.id %>/delete">
+
+
+
+</form>
