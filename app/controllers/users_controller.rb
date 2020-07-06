@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   post '/signup' do
     @user = User.create(params)
     if @user.save
-      session[:id] = user.id
+      session[:id] = @user.id
       redirect to('/tweets')
     else
       redirect to('/signup')
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       @user = User.find_by(username: params[:username])
       if @user && @user.authenticate(params[:password])
         session[:id] = @user.id
-        redirect to('/tweets')
+        redirect to("/tweets")
       else
         erb :'users/login'
       end
@@ -54,6 +54,7 @@ class UsersController < ApplicationController
 
   #Displays individual user's tweets
   get '/users/:slug' do
+    @tweet = Tweet.find_by(params[:id])
     @user = User.find_by_slug(params[:slug])
     erb :"tweets/show"
   end

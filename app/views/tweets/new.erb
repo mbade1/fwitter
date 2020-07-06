@@ -1,16 +1,11 @@
-NEW TWEET PAGE
+<h1>Create a New Tweet!</h1>
 <!-- The rest of this page (below) was preloaded in the repo -->
-<% if Helpers.is_logged_in?(session) %>
-<%= @error %>
+
   <form action='/tweets' method="post">
-    Content:
-    <input type="text" name="content"><br>
+
     Create Your Tweet:
-    <textarea type="text" name="content" placeholder="type your tweet here"></textarea><br>
+    <textarea type="text" name="content" placeholder="type your tweet here"></textarea><br><br>
     <input type="submit" name="submit" id="submit">
-    <input type="submit" name="submit">
   </form>
 
-  <% else %>
-      <h1> You Must Be Logged in to Make Tweets </h1>
-  <% end %>
+  

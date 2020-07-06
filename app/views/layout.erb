@@ -9,7 +9,6 @@
       <a button type="button" href="/tweets">View All Tweets</a>
 <a button type="button" href="/tweets/new">Create a New Tweet</a>
     <% if logged_in? %>
-    <a button type="button" href="/users/<%= current_user.slug %>">User Info.</a>
     <a button type="button" href="/logout">Logout</a>
     <% else %>
       <a button type="button" href="/login">Login</a>
