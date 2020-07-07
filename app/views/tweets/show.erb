@@ -3,7 +3,7 @@
 <h1>View Tweet</h1>
 
 <h3><%= @tweet.content %></h3>
-
+<% #if current_user = @tweet.user_id, then...%>
 <h4><a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a></h4>
 
 <form method="POST" action="/tweets/<%= @tweet.id %>/delete">
