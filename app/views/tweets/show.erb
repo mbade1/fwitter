@@ -6,10 +6,7 @@
 
 <h4><a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a></h4>
 
-FORM FOR DELETE BUTTON
-
 <form method="POST" action="/tweets/<%= @tweet.id %>/delete">
-
-
-
+  <input type="hidden" id="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Tweet">
 </form>
