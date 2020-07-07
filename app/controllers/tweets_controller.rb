@@ -5,16 +5,27 @@ class TweetsController < ApplicationController
     set :public_folder, 'public'
     set :views, 'app/views'
 
-  #Shows Tweets index page
-  get '/tweets' do
-    @tweet = Tweet.all
-    if logged_in?
+  # #Shows Tweets index page for user's tweets
+  # get '/tweets' do
+  #   @tweet = Tweet.all
+  #   if logged_in?
+  #     @user = current_user
+  #     erb :'tweets/tweets'
+  #   else
+  #     redirect to('/login')
+  #   end
+  # end
+
+    #Shows Tweets index page for ALL tweets
+    get '/tweets' do
       @user = current_user
-      erb :'tweets/tweets'
-    else
-      redirect to('/login')
+      if logged_in?
+        erb :'tweets/all'
+      else
+        redirect to('/login')
+      end
     end
-  end
+
 
   #Shows the New Tweet form and makes a new tweet
   get '/tweets/new' do
@@ -69,11 +80,16 @@ class TweetsController < ApplicationController
 
   #deletes an individual tweet
   delete '/tweets/:id/delete' do
-    @tweet = current_user.tweets.find_by(:id => params[:id])
-    if @tweet && @tweet.destroy
-      redirect to('/tweets')
+    @tweet = Tweet.find_by(id: params[:id]) #current_user.tweets.find_by(:id => params[:id])
+    #binding.pry
+    if current_user.id == @tweet.user_id
+      if @tweet && @tweet.destroy
+        redirect to('/tweets')
+      else
+        redirect "/tweets/#{@tweet.id}"
+      end
     else
-      redirect "/tweets/#{@tweet.id}"
+      redirect "/tweets"
     end
   end
 end
